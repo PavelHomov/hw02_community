@@ -1,31 +1,23 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    {% block title %}
-    <title>Записи сообщества {{ method }}</title>
-    {% endblock %}
-  </head>
-  <body>
-  {% block content %}
+{% block title %}
+  <title>Записи сообщества {{ group.title }}</title>
+{% endblock %}
+{% block content %}
   <div class="container">
-  <h1>{{ method }}</h1>
-    <p>{{ group.description}}</p>
-  {% for post in posts %}
-  <ul>
-    <li>
-      Автор: {{ post.author.get_full_name }}
-    </li>
-    <li>
-      {% load i18n %}
-      {% language 'ru' %}
-      Дата публикации: {{ post.pub_date|date:"d E Y" }}
-      {% endlanguage %}
-    </li>
-  </ul>
-  <p>{{ post.text }}</p>
-  {% if not forloop.last %}<hr>{% endif %}
-  {% endfor %}
-  {% endblock %}
-  </body>
-</html>
+    <h1>{{ group.title }}</h1>
+    <p>{{ group.description }}</p>
+    {% for post in posts %}
+    <article>
+      <ul>
+        <li>
+          Автор: {{ post.author.get_full_name }}
+        </li>
+        <li>
+          Дата публикации: {{ post.pub_date|date:"d E Y" }}
+        </li>
+      </ul>
+      <p>{{ post.text|linebreaks }}</p>
+    </article>
+    {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+{% endblock %}

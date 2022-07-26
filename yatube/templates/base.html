@@ -16,17 +16,13 @@
     {% endblock %}
   </head>
   <body>
-    <header>
-      {% include 'includes/header.html' %}
-    </header>
+    {% include 'includes/header.html' %}
     <main>
       {% block content %}
       <div class="container">
       <h1>Контент не подвезли :(</h1>
       {% endblock %}
     </main>
-    <footer>
       {% include 'includes/footer.html' %}
-    </footer>
   </body>
 </html>

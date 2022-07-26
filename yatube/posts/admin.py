@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
 from .models import Post, Group
 
 
+@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    """Админка для Post."""
     list_display = (
         'pk',
         'text',
@@ -18,5 +19,7 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-admin.site.register(Post, PostAdmin)
-admin.site.register(Group)
+@admin.register(Group)
+class GroupAdmin(admin.ModelAdmin):
+    """Админка для Group."""
+    pass
